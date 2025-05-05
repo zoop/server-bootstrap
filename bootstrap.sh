@@ -74,13 +74,15 @@ echo "➡️  Installing wkhtmltopdf..."
 sudo apt install -y -qq wkhtmltopdf > /dev/null
 echo "✅ wkhtmltopdf installed!"
 
-# Install Node.js (via NVM)
-echo "➡️  Installing NVM..."
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash > /dev/null
-source ~/.bashrc
-echo "➡️  Installing Node.js..."
-nvm install 22 > /dev/null
-echo "✅ Node.js installed!"
+# Install NVM, Node.js 22 (latest LTS), and Yarn
+echo "➡️  Installing NVM, Node.js, and Yarn..."
+export NVM_DIR="$HOME/.nvm"
+if [ ! -d "$NVM_DIR" ]; then
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+fi
+source "$NVM_DIR/nvm.sh"
+nvm install 22
+npm install --global yarn
 
 # Install Yarn
 echo "➡️  Installing Yarn..."
